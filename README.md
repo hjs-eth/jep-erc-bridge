@@ -81,7 +81,7 @@ npx hardhat test
 
 ## 🔗 Relationship to Core JEP
 
-This is a **commercial implementation** of the JEP protocol. The core specification is maintained by the JEP Foundation at [hjs-spec/jep-spec](https://github.com/hjs-spec/jep-spec) and is progressing through IETF standardization.
+This is a **commercial implementation** of the JEP protocol. The core specification is maintained by the JEP Foundation at [hjs-spec/jep-spec](https://github.com/hjs-spec) and is progressing through IETF standardization.
 
 ---
 
