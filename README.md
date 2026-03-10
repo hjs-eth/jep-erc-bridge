@@ -2,33 +2,90 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**JEP-ERC Bridge** is a commercial implementation of the [JEP (Judgment Event Protocol)](https://github.com/hjs-spec/jep-spec) in the Ethereum ecosystem. It adds a **responsibility layer** to agent-to-agent transactions by integrating with ERC-8183 (Agent Task Protocol) and ERC-8004 (Agent Identity).
+**JEP-ERC Bridge** is a commercial implementation of the [JEP (Judgment Event Protocol)](https://github.com/hjs-spec/jep-spec) in the Ethereum ecosystem. It adds a **responsibility layer** to agent-to-agent transactions by integrating with ERC-8183 (Agent Task Protocol).
 
-## 🚀 Why This Matters
+---
 
-- **ERC-8183** enables agents to post tasks, fund them, and submit deliverables
-- **ERC-8004** gives agents verifiable on-chain identities and reputation
-- **JEP** adds the missing piece: **who authorized what, when, and can it be verified?**
+## 🚀 The Problem
 
-Together, they form a complete trust stack for autonomous agents:
-- Identity → ERC-8004
-- Transaction → ERC-8183
-- **Responsibility → JEP (this bridge)**
+Agent-to-agent transactions are exploding:
+- **$3M+** in agent-to-agent commerce tracked by aGDP
+- **3,400+** agents hiring each other on-chain
+- **Zero** responsibility tracking
 
-## 📦 What's Inside
+Current stack:
+- ✅ ERC-8004: Agent identity
+- ✅ ERC-8183: Agent task posting/funding
+- ❌ **Missing**: Who authorized what? When? Can it be verified?
 
-- `contracts/` – Solidity contracts for JEP verification
-- `sdk/` – TypeScript SDK for generating/verifying JEP Receipts
-- `demo/` – Example integration with ERC-8183
+---
 
-## 🧪 Status
+## 💡 The Solution
 
-🚧 **Experimental** – This is a proof-of-concept under active development. Not yet production-ready.
+JEP-ERC Bridge adds the missing **responsibility layer**:
+
+| Layer | Protocol | Status |
+|-------|----------|--------|
+| Identity | ERC-8004 | ✅ Live |
+| Transaction | ERC-8183 | ✅ Draft |
+| **Responsibility** | **JEP-ERC Bridge** | 🚧 In Development |
+
+---
+
+## 📦 Components
+
+### Smart Contracts
+
+| Contract | Description |
+|----------|-------------|
+| `JEPVerifier.sol` | On-chain verification registry for JEP Receipts |
+| `JEP8183Extension.sol` | ERC-8183 compatibility layer |
+
+### SDK (Coming Soon)
+
+```typescript
+import { JEPVerifier } from '@jep-eth/sdk';
+
+// Generate a JEP Receipt
+const receipt = await JEPVerifier.createReceipt({
+  actor: '0x...',
+  decisionHash: '0x...',
+  authorityScope: 'erc-8183',
+  valid: { from: now, until: now + 3600 }
+});
+```
+
+---
+
+## 🧪 Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Compile contracts
+npx hardhat compile
+
+# Run tests
+npx hardhat test
+```
+
+---
+
+## 📚 Documentation
+
+- [Technical Specification](docs/SPEC.md)
+- [Integration Guide](docs/INTEGRATION.md)
+
+---
 
 ## 🔗 Relationship to Core JEP
 
-This is a **commercial implementation** of the JEP protocol. The core specification is maintained by the JEP Foundation at [hjs-spec/jep-spec](https://github.com/hjs-spec) and is progressing through IETF standardization.
+This is a **commercial implementation** of the JEP protocol. The core specification is maintained by the JEP Foundation at [hjs-spec/jep-spec](https://github.com/hjs-spec/jep-spec) and is progressing through IETF standardization.
+
+---
 
 ## 📄 License
 
 MIT © 2026 JEP-ETH Contributors
+```
