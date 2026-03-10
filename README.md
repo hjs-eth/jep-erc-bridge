@@ -88,4 +88,3 @@ This is a **commercial implementation** of the JEP protocol. The core specificat
 ## 📄 License
 
 MIT © 2026 JEP-ETH Contributors
-```
